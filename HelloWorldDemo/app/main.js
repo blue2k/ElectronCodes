@@ -12,7 +12,24 @@ const BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
 
 //通讯模块
-const { ipcMain } = electron.ipcMain;
+const ipcMain = electron.ipcMain;
+
+//对话框模块
+const dialog = electron.dialog;
+var infoDialogOption = {
+    type: "info",
+    title: "信息",
+    buttons: ["确定"],
+    message: "",
+    detail: ""
+};
+var questionDialogOption = {
+    type: "question",
+    title: "询问",
+    buttons: ["确定", "取消"],
+    message: "",
+    detail: ""
+};
 
 //创建应用程序窗口
 function createWindow() {   // 创建一个新的浏览器窗口
@@ -49,26 +66,16 @@ app.on('activate', function() {  
 // 初始化并准备创建浏览器窗口
 app.on('ready', createWindow);
 
-
-
-//监听Web Page里发出的Message
-ipcMain.on('asynchronous-message', function(event, arg) {
-    console.log('main1:' + arg); //prints ping
-    event.sender.send('asynchronous reply', 'pong'); //在main process里向web page发出message
-
-});
-ipcMain.on('synchronous-message', function(event, arg) {
-    Console.log("mian2" + arg); // prints "ping"
-    event.returnValue = 'pong';
-});
-
-
-const Menu = require('electron').Menu;
+const Menu = electron.Menu;
 var template = [{
     label: '关闭',
     click: function() {
-        mainWindow.close();
-        console.log("关闭")
+        questionDialogOption.message = "确定退出程序吗？";
+        var result = dialog.showMessageBox(questionDialogOption);
+        if (result == '0') {
+            mainWindow.close();
+            console.log("关闭");
+        }
     },
     // submenu: [
     //   {
@@ -80,3 +87,18 @@ var template = [{
 }];
 var menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
+
+
+//监听Web Page里发出的Message
+ipcMain.on('asynchronous-message', function(event, arg) {
+    console.log('window async listener:' + arg); //prints ping
+    infoDialogOption.message = 'ipcMain test';
+    infoDialogOption.detail = 'window async listener:  ' + arg;
+    dialog.showMessageBox(infoDialogOption);
+    event.sender.send('asynchronous reply', 'pong'); //在main process里向web page发出message
+
+});
+ipcMain.on('synchronous-message', function(event, arg) {
+    Console.log("window synch listener:" + arg); // prints "ping"
+    event.returnValue = 'pong';
+});
