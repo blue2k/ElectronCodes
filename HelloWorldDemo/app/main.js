@@ -41,10 +41,10 @@ function createWindow() {   // 创建一个新的浏览器窗口
     //win.webContents.openDevTools();
 
     // 当窗口关闭时调用的方法      
-    mainWindow.on('closed', () => {    
+    mainWindow.on('closed', () => {   
         // 解除窗口对象的引用，通常而言如果应用支持多个窗口的话，你会在一个数组里
         // 存放窗口对象，在窗口关闭的时候应当删除相应的元素。            
-        mainWindow = null;  
+        mainWindow = null; 
     });
 }
 
@@ -95,7 +95,7 @@ ipcMain.on('asynchronous-message', function(event, arg) {
     infoDialogOption.message = 'ipcMain test';
     infoDialogOption.detail = 'window async listener:  ' + arg;
     dialog.showMessageBox(infoDialogOption);
-    event.sender.send('asynchronous reply', 'pong'); //在main process里向web page发出message
+    event.sender.send('asynchronous-reply', 'pong'); //在main process里向web page发出message
 
 });
 ipcMain.on('synchronous-message', function(event, arg) {
