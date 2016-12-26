@@ -51,7 +51,7 @@ input {
     background-color: #2D2D3F;
 }
 
-but {
+.but {
     width: 300px;
     min-height: 20px;
     display: block;
