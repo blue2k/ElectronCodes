@@ -108,6 +108,20 @@ body {
     margin-top: 10px;
 }
 
+.login input[type=aboutbutton] {
+    width: 125px;
+    height: 35px;
+    background: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #a18d6c;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
 .login input[type=button]:hover {
     opacity: 0.8;
 }
@@ -127,6 +141,18 @@ body {
 }
 
 .login input[type=button]:focus {
+    outline: none;
+}
+
+.login input[type=aboutbutton]:hover {
+    opacity: 0.8;
+}
+
+.login input[type=aboutbutton]:active {
+    opacity: 0.6;
+}
+
+.login input[type=aboutbutton]:focus {
     outline: none;
 }
 

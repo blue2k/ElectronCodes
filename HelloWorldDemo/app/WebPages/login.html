@@ -15,6 +15,16 @@
             dologin(user, password);
             //writeLogFile("login, user: " + user);
         }
+
+        function doAbout() {
+            alert("打开关于弹出窗口");
+
+        }
+
+        function doRegister() {
+            alert("打开注册页面");
+
+        }
     </script>
 </head>
 
@@ -28,7 +38,9 @@
     <div class="login ">
         <input id="userIn" type="text" placeholder="username" name="user"><br>
         <input id="passwordIn" type="password" placeholder="password" name="password"><br>
-        <input id="submitButton" type="button" value="登录" onclick="startLogin()">
+        <input type="button" value="登录" onclick="startLogin()">
+        <input type="aboutbutton" value="关于" onclick="doAbout()">
+        <input type="aboutbutton" value="注册" onclick="doRegister()">
     </div>
 </body>
 
