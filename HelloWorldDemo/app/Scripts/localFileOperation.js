@@ -18,7 +18,7 @@ function OpenUrl() {
 
 
 //本地文件写入
-function writeLogFile() {
+function writeLogFile(logs) {
     var path = require('path');
     var _path = path.join(__dirname, '..', '\\docs\\log.txt');
     console.log(_path); //测试路径对不对的
@@ -27,7 +27,8 @@ function writeLogFile() {
         if (err) return console.log(err);
     });
 
-    fs.writeFile(_path, "electron + Javascript", function(err) {
+    var time = new Date().toString();
+    fs.writeFile(_path, time + " " + logs, function(err) {
         if (!err)
             console.log("写入成功！")
     });

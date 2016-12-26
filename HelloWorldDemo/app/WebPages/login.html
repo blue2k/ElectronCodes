@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>欢迎登录</title>
-        <link rel="stylesheet"  type="text/css"  href="../styles/login.css" />
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录</title>
+    <link rel="stylesheet" type="text/css" href="../styles/login.css" />
+    <script src="../scripts/electrondemo.login.js"></script>
+    <!--<script src="../scripts/localFileOperation.js"></script></!-->
+    <script type="text/javascript">
+        function startLogin() {
+            var user = document.getElementById("userIn").value;
+            var password = document.getElementById("passwordIn").value;
+            //alert("开始登录: " + user + "---" + password);
+            dologin(user, password);
+            //writeLogFile("login, user: " + user);
+        }
+    </script>
+</head>
 
-    <body>
-        <div id="login">
-            <h1>Login</h1>
-            <form method="post">
-                <input type="text"  required="required"  placeholder="用户名"  name="u"></input>
-                    <input type="password"  required="required"  placeholder="密码"  name="p"></input>
-                        <button class="but"  type="submit">登录</button>
-                            </form>
-                            </div>
-    </body>
+<body>
+    <div class="body "></div>
+    <div class="grad "></div>
+    <div class="header ">
+        <div>Electron<span>Demo</span></div>
+    </div>
+    <br>
+    <div class="login ">
+        <input id="userIn" type="text" placeholder="username" name="user"><br>
+        <input id="passwordIn" type="password" placeholder="password" name="password"><br>
+        <input id="submitButton" type="button" value="登录" onclick="startLogin()">
+    </div>
+</body>
 
-    </html>  
+</html>

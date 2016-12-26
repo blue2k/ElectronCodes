@@ -68,15 +68,15 @@ app.on('ready', createWindow);
 
 const Menu = electron.Menu;
 var template = [{
-    label: '关闭',
-    click: function() {
-        questionDialogOption.message = "确定退出程序吗？";
-        var result = dialog.showMessageBox(questionDialogOption);
-        if (result == '0') {
-            mainWindow.close();
-            console.log("关闭");
-        }
-    },
+    //label: '关闭',
+    //click: function() {
+    //    questionDialogOption.message = "确定退出程序吗？";
+    //    var result = dialog.showMessageBox(questionDialogOption);
+    //if (result == '0') {
+    //mainWindow.close();
+    //console.log("关闭");
+    //}
+    //},
     // submenu: [
     //   {
     //     label: 'Undo',
@@ -101,4 +101,11 @@ ipcMain.on('asynchronous-message', function(event, arg) {
 ipcMain.on('synchronous-message', function(event, arg) {
     Console.log("window synch listener:" + arg); // prints "ping"
     event.returnValue = 'pong';
+});
+
+//监听登录消息
+ipcMain.on('login-command', function(event, arg) {
+    console.log('Login:' + arg); //prints ping
+    event.sender.send('login-reply-command', 'ok'); //在main process里向web page发出message
+
 });
