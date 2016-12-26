@@ -36,7 +36,7 @@ function createWindow() {   // 创建一个新的浏览器窗口
       
     mainWindow = new BrowserWindow({ width: 800, height: 600 });    // 并且装载应用的index.html页面
       
-    mainWindow.loadURL(`file://${__dirname}/index.html`);   
+    mainWindow.loadURL(`file://${__dirname}/webpages/login.html`);   
     // 打开开发工具页面
     //win.webContents.openDevTools();
 
