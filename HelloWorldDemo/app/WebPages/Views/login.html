@@ -9,21 +9,19 @@
     <!--<script src="../scripts/localFileOperation.js"></script></!-->
     <script type="text/javascript">
         function startLogin() {
-            //var user = document.getElementById("userIn").value;
-            //var password = document.getElementById("passwordIn").value;
-            //alert("开始登录: " + user + "---" + password);
-            doLogin(1, 2);
+            var user = document.getElementById("userIn").value;
+            var password = document.getElementById("passwordIn").value;
+            doLogin(user, password);
             //writeLogFile("login, user: " + user);
         }
 
         function doAbout() {
-            alert("打开关于弹出窗口");
-
+            showAboutWindow();
         }
 
         function doRegister() {
             alert("打开注册页面");
-
+            showRegisterWindow();
         }
     </script>
 </head>
@@ -39,7 +37,7 @@
         <image id="icon" src="" /><br>
         <input id="userIn" type="text" placeholder="username" name="user"><br>
         <input id="passwordIn" type="password" placeholder="password " name="password"><br>
-        <input type="button" value="登录" onclick="startLogin()">
+        <input type="button" value="登录" onclick="startLogin()"><br>
         <input type="aboutbutton" value="关于" onclick="doAbout()">
         <input type="aboutbutton" value="注册" onclick="doRegister()">
     </div>

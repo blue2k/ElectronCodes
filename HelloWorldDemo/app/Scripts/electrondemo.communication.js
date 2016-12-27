@@ -1,16 +1,6 @@
 //Web页面通讯处理模块
 const electron = require('electron');
-const ipcRenderer = require('electron').ipcRenderer;
-
-//对话框模块
-const dialog = electron.dialog;
-var infoDialogOption = {
-    type: "info",
-    title: "信息",
-    buttons: ["确定"],
-    message: "",
-    detail: ""
-};
+const ipcRenderer = electron.ipcRenderer;
 
 //监听mian process里发出的message
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
@@ -22,6 +12,14 @@ ipcRenderer.on('asynchronous-reply', (event, arg) => {
 });
 
 function say_hello() {
+    //在web page里向main process发出message
+    ipcRenderer.send('asynchronous-message', 'Hi world!'); // prints "pong"   
+    // ipcRenderer.sendSync('synchronous-message', 'ping') // prints "pong"   
+    // alert("web1" + 'ping');
+};
+
+function sayhello1(tmp) {
+    alert(tmp);
     //在web page里向main process发出message
     ipcRenderer.send('asynchronous-message', 'Hi world!'); // prints "pong"   
     // ipcRenderer.sendSync('synchronous-message', 'ping') // prints "pong"   
