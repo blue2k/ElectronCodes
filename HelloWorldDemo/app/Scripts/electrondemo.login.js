@@ -8,7 +8,7 @@ ipcRenderer.on('Login-Reply-Command', (event, arg) => {
 
 });
 
-function dologin(name, password) {
+function doLogin(name, password) {
     alert("开始登录: " + user + "," + password);
     //在web page里向main process发出message
     ipcRenderer.send('login-command', name + '|' + password);

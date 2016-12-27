@@ -36,7 +36,8 @@ function createWindow() {   // 创建一个新的浏览器窗口
       
     mainWindow = new BrowserWindow({ width: 800, height: 600 });    // 并且装载应用的index.html页面
       
-    mainWindow.loadURL(`file://${__dirname}/webpages/login.html`);   
+    mainWindow.loadURL(`file://${__dirname}/webpages/Views/login.html`);  
+    //mainWindow.loadURL(`file://${__dirname}/webpages/demo.html`);   
     // 打开开发工具页面
     //win.webContents.openDevTools();
 
@@ -68,17 +69,16 @@ app.on('ready', createWindow);
 
 const Menu = electron.Menu;
 var template = [{
-    //label: '关闭',
-    //click: function() {
-    //    questionDialogOption.message = "确定退出程序吗？";
-    //    var result = dialog.showMessageBox(questionDialogOption);
-    //if (result == '0') {
-    //mainWindow.close();
-    //console.log("关闭");
-    //}
-    //},
-    // submenu: [
-    //   {
+    label: '退出',
+    click: function() {
+        questionDialogOption.message = "确定退出程序吗？";
+        var result = dialog.showMessageBox(questionDialogOption);
+        if (result == '0') {
+            mainWindow.close();
+            console.log("退出程序");
+        }
+    },
+    //submenu: {
     //     label: 'Undo',
     //     accelerator: 'CmdOrCtrl+Z',
     //     role: 'undo'
