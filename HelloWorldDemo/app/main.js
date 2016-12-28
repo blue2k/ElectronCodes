@@ -161,8 +161,11 @@ ipcMain.on('synchronous-message', function(event, arg) {
 //监听登录消息
 ipcMain.on('login-command', function(event, arg) {
     console.log('Login:' + arg); //prints ping
-    event.sender.send('login-reply-command', arg); //在main process里向web page发出message
-
+    //event.sender.send('login-reply-command', arg); //在main process里向web page发出message
+    //TODO: 进行鉴权
+    
+    //登录成功，打开主界面
+    mainWindow.loadURL(`file://${__dirname}/webpages/Views/home.html`);
 });
 
 //监听显示关于窗口消息
@@ -172,15 +175,17 @@ ipcMain.on('show-about-command', function(event, arg) {
         return;
     }
 
-    var aboutUrl = `file://${__dirname}/settings.html`;
+    var aboutUrl = `file://${__dirname}/webpages/Views/about.html`;
     aboutWindow = new BrowserWindow({
         frame: false,
-        height: 200,
+        height: 165,
         width: 500,
+        alwaysOnTop: true,
+        skipTaskbar: true,
         resizable: false
     });    
-    aboutWindow.on('resize', updateReply)
-    aboutWindow.on('move', updateReply)
+    aboutWindow.on('resize', updateReply);
+    aboutWindow.on('move', updateReply);
     aboutWindow.on('closed', () => {  aboutWindow = null; });
     aboutWindow.loadURL(aboutUrl);  
     aboutWindow.show();
